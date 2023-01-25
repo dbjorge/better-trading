@@ -1,7 +1,25 @@
-node_modules/*
+# unconventional js
+/app/**/translations.js
+/blueprints/*/files/
+/vendor/
 **/vendor/*.js
-vendor/**/*.js
-dist/**/*.js
-dist-packages/**/*.js
-tmp/**/*.js
-app/**/translations.js
+
+# compiled output
+/dist/
+/dist-packages/
+/tmp/
+
+# dependencies
+/bower_components/
+/node_modules/
+
+# misc
+/coverage/
+!.*
+.*/
+.eslintcache
+
+# ember-try
+/.node_modules.ember-try/
+/bower.json.ember-try
+/package.json.ember-try

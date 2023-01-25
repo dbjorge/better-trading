@@ -1,7 +1,7 @@
 import Application from '@ember/application';
-import Resolver from './resolver';
+import Resolver from 'ember-resolver';
 import loadInitializers from 'ember-load-initializers';
-import config from './config/environment';
+import config from 'better-trading/config/environment';
 
 // Initialize the extension root container
 const extensionContainer = document.createElement('div');

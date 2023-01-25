@@ -27,4 +27,5 @@ module.exports = {
     'table-groups': true,
     'template-length': [true, {min: 1, max: 200}]
   }
+  // TODO: extends: 'recommended' per ember-cli-update --to 3.28.2
 };

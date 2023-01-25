@@ -11,7 +11,7 @@ module.exports = function (environment) {
     modulePrefix: 'better-trading',
     podModulePrefix: 'better-trading/pods',
     environment,
-    locationType: 'hash',
+    locationType: 'hash', // TODO: ember-cli-update --to 3.28.2 suggested auto, investigate
     rootURL: '/',
   };
 

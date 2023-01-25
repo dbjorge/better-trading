@@ -1,5 +1,25 @@
+'use strict';
+
 module.exports = {
   root: true,
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    ecmaFeatures: {
+      legacyDecorators: true,
+    },
+  },
+  plugins: ['ember'],
+  extends: [
+    'eslint:recommended',
+    'plugin:ember/recommended',
+    'plugin:prettier/recommended',
+  ],
+  env: {
+    browser: true,
+  },
+  rules: {},
   overrides: [
     {
       parser: '@typescript-eslint/parser',
@@ -72,23 +92,23 @@ module.exports = {
     },
     {
       files: [
-        '.ember-cli.js',
-        '.eslintrc.js',
-        '.template-lintrc.js',
-        'ember-cli-build.js',
-        'testem.js',
-        'config/**/*.js',
-        'lib/*/index.js',
-        'scripts/**/*.js',
-        'node-server/**/*.js'
+        './.ember-cli.js',        
+        './.eslintrc.js',
+        './.prettierrc.js',
+        './.template-lintrc.js',
+        './ember-cli-build.js',
+        './testem.js',
+        './blueprints/*/index.js',
+        './config/**/*.js',
+        './lib/*/index.js',
+        './server/**/*.js',
       ],
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015
       },
       env: {
         browser: false,
-        node: true
+        node: true,
       },
       plugins: ['node'],
       rules: {
@@ -101,6 +121,12 @@ module.exports = {
         'node/no-unpublished-require': 'off'
       },
       extends: ['plugin:node/recommended']
-    }
+    },
+    // TODO: suggested by ember-cli-update --to 3.28.2, add this if switching to qunit
+    // {
+    //   // Test files:
+    //   files: ['tests/**/*-test.{js,ts}'],
+    //   extends: ['plugin:qunit/recommended'],
+    // },
   ]
 };
