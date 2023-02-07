@@ -47,39 +47,6 @@ module.exports = function (environment) {
     types: ['alert', 'success', 'warning'],
   };
 
-  ENV.fontawesome = {
-    icons: {
-      'free-solid-svg-icons': [
-        'chevron-down',
-        'folder-plus',
-        'plus-square',
-        'save',
-        'trash-alt',
-        'check',
-        'times',
-        'info-circle',
-        'ellipsis-h',
-        'sort',
-        'compress-alt',
-        'angle-right',
-        'angle-left',
-        'link',
-        'clipboard',
-        'file-import',
-        'file-export',
-        'exclamation-circle',
-        'history',
-        'folder-open',
-        'circle-notch',
-        'check-circle',
-        'thumbtack',
-        'archive',
-        'undo',
-      ],
-      'free-brands-svg-icons': ['github', 'discord'],
-    },
-  };
-
   if (environment === 'test') {
     ENV.locationType = 'none';
 
