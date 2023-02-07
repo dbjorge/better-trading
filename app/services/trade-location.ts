@@ -1,7 +1,7 @@
 // Vendor
 import Service, {inject as service} from '@ember/service';
 import window from 'ember-window-mock';
-import {restartableTask} from 'ember-concurrency-decorators';
+import {restartableTask} from 'ember-concurrency';
 import {timeout} from 'ember-concurrency';
 import Evented from '@ember/object/evented';
 

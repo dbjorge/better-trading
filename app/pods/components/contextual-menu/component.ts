@@ -2,7 +2,7 @@
 import Component from '@glimmer/component';
 import {action} from '@ember/object';
 import {tracked} from '@glimmer/tracking';
-import {restartableTask} from 'ember-concurrency-decorators';
+import {restartableTask} from 'ember-concurrency';
 import {timeout} from 'ember-concurrency';
 
 // Types

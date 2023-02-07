@@ -1,6 +1,6 @@
 // Vendor
 import Service, {inject as service} from '@ember/service';
-import {enqueueTask} from 'ember-concurrency-decorators';
+import {enqueueTask} from 'ember-concurrency';
 import window from 'ember-window-mock';
 
 // Types

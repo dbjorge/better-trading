@@ -3,7 +3,7 @@ import {action} from '@ember/object';
 import {inject as service} from '@ember/service';
 import Component from '@glimmer/component';
 import {tracked} from '@glimmer/tracking';
-import {dropTask, restartableTask} from 'ember-concurrency-decorators';
+import {dropTask, restartableTask} from 'ember-concurrency';
 
 // Types
 import Bookmarks from 'better-trading/services/bookmarks';

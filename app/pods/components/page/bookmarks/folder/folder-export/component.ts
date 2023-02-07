@@ -1,7 +1,7 @@
 // Vendor
 import {inject as service} from '@ember/service';
 import Component from '@glimmer/component';
-import {dropTask} from 'ember-concurrency-decorators';
+import {dropTask} from 'ember-concurrency';
 
 // Types
 import Bookmarks from 'better-trading/services/bookmarks';
