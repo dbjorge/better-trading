@@ -13,7 +13,7 @@ module.exports = function (defaults) {
     storeConfigInMeta: false,
     tests: IS_TEST_ENVIRONMENT,
 
-    'ember-cli-uglify': {
+    terser: {
       enabled: false,
     },
 
