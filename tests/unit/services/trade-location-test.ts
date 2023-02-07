@@ -1,7 +1,8 @@
 // Vendor
 import {expect} from 'chai';
 import {setupTest} from 'ember-mocha';
-import {default as window, reset} from 'ember-window-mock';
+import window from 'ember-window-mock';
+import {reset} from 'ember-window-mock/test-support';
 import {beforeEach, afterEach, describe, it} from 'mocha';
 import sinon from 'sinon';
 
