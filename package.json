@@ -83,7 +83,7 @@
     "ember-modifier": "~2.1.0",
     "ember-native-dom-helpers": "~0.6.2",
     "ember-page-title": "^6.2.2",
-    "ember-resolver": "~8.0.2",
+    "ember-resolver": "~8.1.0",
     "ember-sortable": "~2.2.1",
     "ember-source": "~3.28.0",
     "ember-template-lint": "^3.6.0",
