@@ -46,11 +46,10 @@ export default class FolderExport extends Component<Args> {
     return `<iframe ${iframeAttributes.join(' ')}></iframe>`;
   }
 
-  @dropTask
-  *serializeFolderTask() {
+  serializeFolderTask = dropTask(async () => {
     const folder = this.args.folder;
-    const trades = yield this.bookmarks.fetchTradesByFolderId(folder.id);
+    const trades = await this.bookmarks.fetchTradesByFolderId(folder.id);
 
     this.serializedFolder = this.bookmarks.serializeFolder(folder, trades);
-  }
+  });
 }

@@ -42,11 +42,10 @@ export default class ContextualMenu extends Component {
     };
   }
 
-  @restartableTask
-  *debouncedHideItemsTask() {
-    yield timeout(HIDE_DEBOUNCE_DELAY_IN_MILLISECONDS);
+  debouncedHideItemsTask = restartableTask(async () => {
+    await timeout(HIDE_DEBOUNCE_DELAY_IN_MILLISECONDS);
     this.hideItems();
-  }
+  });
 
   @action
   showItems(event: MouseEvent) {

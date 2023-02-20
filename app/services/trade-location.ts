@@ -51,8 +51,7 @@ export default class TradeLocation extends Service.extend(Evented) {
     return this.parseCurrentPath();
   }
 
-  @restartableTask
-  *locationPollingTask() {
+  locationPollingTask = restartableTask(async () => {
     const currentTradeLocation = this.currentTradeLocation;
 
     if (!this.compareExactTradeLocations(this.lastTradeLocation, currentTradeLocation)) {
@@ -61,16 +60,16 @@ export default class TradeLocation extends Service.extend(Evented) {
         newTradeLocation: currentTradeLocation,
       };
 
-      yield this.tradeLocationHistory.maybeLogTradeLocation(currentTradeLocation);
+      await this.tradeLocationHistory.maybeLogTradeLocation(currentTradeLocation);
       this.trigger('change', changeEvent);
       this.lastTradeLocation = currentTradeLocation;
     }
 
-    yield timeout(config.APP.locationPollingIntervalInMilliseconds);
+    await timeout(config.APP.locationPollingIntervalInMilliseconds);
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     (this.locationPollingTask as Task).perform();
-  }
+  });
 
   initialize() {
     window.addEventListener('focus', this.startLocationPolling.bind(this));

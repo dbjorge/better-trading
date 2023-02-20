@@ -18,19 +18,18 @@ export default class ItemResultsEnhance extends Service {
   private resultsObserver: MutationObserver;
   private enhancerServices: ItemResultsEnhancerService[] = [];
 
-  @enqueueTask
-  *enhanceTask() {
+  enhanceTask = enqueueTask(async () => {
     const itemElementsCount = window.document.querySelectorAll('.resultset > div.row').length;
     const unenhancedElements = Array.prototype.slice.call(
       window.document.querySelectorAll('.resultset > div.row[data-id]:not([bt-enhanced])')
     );
 
     if (unenhancedElements.length) {
-      yield this.enhanceItems(unenhancedElements);
+      await this.enhanceItems(unenhancedElements);
     } else if (itemElementsCount === 0) {
-      yield this.clearEnhancedItems();
+      await this.clearEnhancedItems();
     }
-  }
+  });
 
   getEnhancerSlugs() {
     return this.enhancerServices.map((enhancerService) => enhancerService.slug || '').filter(Boolean);

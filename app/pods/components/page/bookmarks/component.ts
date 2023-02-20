@@ -89,21 +89,18 @@ export default class PageBookmarks extends Component {
     this.expandedFolderIds = this.bookmarks.getExpandedFolderIds();
   }
 
-  @dropTask
-  *initialFetchFoldersTask() {
-    this.folders = yield this.bookmarks.fetchFolders();
-  }
+  initialFetchFoldersTask = dropTask(async () => {
+    this.folders = await this.bookmarks.fetchFolders();
+  });
 
-  @restartableTask
-  *refetchFoldersTask() {
-    this.folders = yield this.bookmarks.fetchFolders();
-  }
+  refetchFoldersTask = restartableTask(async () => {
+    this.folders = await this.bookmarks.fetchFolders();
+  });
 
-  @dropTask
-  *deleteFolderTask(deletingFolder: BookmarksFolderStruct) {
+  deleteFolderTask = dropTask(async (deletingFolder: BookmarksFolderStruct) => {
     try {
-      yield this.bookmarks.deleteFolder(deletingFolder);
-      this.folders = yield this.bookmarks.fetchFolders();
+      await this.bookmarks.deleteFolder(deletingFolder);
+      this.folders = await this.bookmarks.fetchFolders();
 
       this.flashMessages.success(
         this.intl.t('page.bookmarks.delete-folder-success-flash', {title: deletingFolder.title})
@@ -111,30 +108,27 @@ export default class PageBookmarks extends Component {
     } catch (_error) {
       this.flashMessages.alert(this.intl.t('general.generic-alert-flash'));
     }
-  }
+  });
 
-  @dropTask
-  *toggleFolderArchiveTask(folder: BookmarksFolderStruct) {
-    yield this.bookmarks.toggleFolderArchive(folder);
-    this.folders = yield this.bookmarks.fetchFolders();
+  toggleFolderArchiveTask = dropTask(async (folder: BookmarksFolderStruct) => {
+    await this.bookmarks.toggleFolderArchive(folder);
+    this.folders = await this.bookmarks.fetchFolders();
 
     this.isShowingArchivedFolders = this.isShowingArchivedFolders && this.hasArchivedFolders;
-  }
+  });
 
-  @dropTask
-  *reorderFoldersTask(reorderedDisplayedFolders: BookmarksFolderStruct[]) {
+  reorderFoldersTask = dropTask(async (reorderedDisplayedFolders: BookmarksFolderStruct[]) => {
     this.folders = this.bookmarks.partiallyReorderFolders(this.folders, reorderedDisplayedFolders);
-    yield this.bookmarks.persistFolders(this.folders);
-  }
+    await this.bookmarks.persistFolders(this.folders);
+  });
 
-  @dropTask
-  *persistFolderTask(folder: BookmarksFolderStruct) {
+  persistFolderTask = dropTask(async (folder: BookmarksFolderStruct) => {
     try {
       const isNewlyCreated = !folder.id;
 
-      const folderId = yield this.bookmarks.persistFolder(folder);
+      const folderId = await this.bookmarks.persistFolder(folder);
       if (isNewlyCreated) this.toggleFolderExpansion(folderId);
-      this.folders = yield this.bookmarks.fetchFolders();
+      this.folders = await this.bookmarks.fetchFolders();
 
       const successTranslationKey = isNewlyCreated
         ? 'page.bookmarks.create-folder-success-flash'
@@ -145,16 +139,15 @@ export default class PageBookmarks extends Component {
     } finally {
       this.stagedFolder = null;
     }
-  }
+  });
 
-  @dropTask
-  *persistImportedFolderTask({folder, trades}: {folder: BookmarksFolderStruct; trades: BookmarksTradeStruct[]}) {
+  persistImportedFolderTask = dropTask(async ({folder, trades}: {folder: BookmarksFolderStruct; trades: BookmarksTradeStruct[]}) => {
     try {
-      const folderId = yield this.bookmarks.persistFolder(folder);
-      yield this.bookmarks.persistTrades(trades, folderId);
+      const folderId = await this.bookmarks.persistFolder(folder);
+      await this.bookmarks.persistTrades(trades, folderId);
 
       this.toggleFolderExpansion(folderId);
-      this.folders = yield this.bookmarks.fetchFolders();
+      this.folders = await this.bookmarks.fetchFolders();
 
       this.flashMessages.success(this.intl.t('page.bookmarks.import-folder-success-flash', {title: folder.title}));
     } catch (_error) {
@@ -162,7 +155,7 @@ export default class PageBookmarks extends Component {
     } finally {
       this.isImportingFolder = false;
     }
-  }
+  });
 
   @action
   toggleArchiveDisplay() {

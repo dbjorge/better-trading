@@ -35,8 +35,7 @@ export default class PagePinnedItems extends Component {
     );
   }
 
-  @task
-  *scrollToItemTask(itemId: string) {
+  scrollToItemTask = task(async (itemId: string) => {
     const itemElement = window.document.querySelector(`div.row[data-id="${itemId}"]`);
     if (!itemElement) {
       return this.flashMessages.alert(this.intl.t('general.generic-alert-flash'));
@@ -44,12 +43,12 @@ export default class PagePinnedItems extends Component {
 
     itemElement.scrollIntoView({block: 'center'});
 
-    yield timeout(SCROLL_ANIMATION_DELAY_IN_MILLISECONDS);
+    await timeout(SCROLL_ANIMATION_DELAY_IN_MILLISECONDS);
     itemElement.classList.add('bt-pinned-glow');
 
-    yield timeout(SCROLL_ANIMATION_DURATION_IN_MILLISECONDS);
+    await timeout(SCROLL_ANIMATION_DURATION_IN_MILLISECONDS);
     itemElement.classList.remove('bt-pinned-glow');
-  }
+  });
 
   @action
   subscribeToPinnedItemsChange() {

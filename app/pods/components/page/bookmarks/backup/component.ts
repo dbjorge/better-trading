@@ -20,9 +20,8 @@ export default class Backup extends Component {
   @service('intl')
   intl: IntlService;
 
-  @dropTask
-  *generateBackupTask() {
-    const dataString = yield this.bookmarks.generateBackupDataString();
+  generateBackupTask = dropTask(async() => {
+    const dataString = await this.bookmarks.generateBackupDataString();
 
     const linkFakeElement = document.createElement('a');
     const blob = new Blob([dataString], {type: 'text/plain'});
@@ -30,16 +29,15 @@ export default class Backup extends Component {
     linkFakeElement.download = 'poe-better-trading-backup.txt';
     linkFakeElement.href = window.URL.createObjectURL(blob);
     linkFakeElement.click();
-  }
+  });
 
-  @dropTask
-  *restoreBackupTask([dataString]: [string]) {
-    const restoreWasSuccessful = yield this.bookmarks.restoreFromDataString(dataString);
+  restoreBackupTask = dropTask(async ([dataString]: [string]) => {
+    const restoreWasSuccessful = await this.bookmarks.restoreFromDataString(dataString);
 
     if (!restoreWasSuccessful) {
       this.flashMessages.alert(this.intl.t('page.bookmarks.backup.restore-error-flash'));
     }
-  }
+  });
 
   @action
   backupFileChange(event: InputEvent) {

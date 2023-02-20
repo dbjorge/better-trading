@@ -78,16 +78,14 @@ export default class BookmarksFolder extends Component<Args> {
     this.currentLeague = this.tradeLocation.league;
   }
 
-  @dropTask
-  *initialLoadTradesTask() {
-    this.trades = yield this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
-  }
+  initialLoadTradesTask = dropTask(async() => {
+    this.trades = await this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
+  });
 
-  @dropTask
-  *deleteTradeTask(deletingTrade: BookmarksTradeStruct) {
+  deleteTradeTask = dropTask(async (deletingTrade: BookmarksTradeStruct) => {
     try {
-      yield this.bookmarks.deleteTrade(deletingTrade, this.folderId);
-      this.trades = yield this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
+      await this.bookmarks.deleteTrade(deletingTrade, this.folderId);
+      this.trades = await this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
 
       this.flashMessages.success(
         this.intl.t('page.bookmarks.folder.delete-trade-success-flash', {title: deletingTrade.title})
@@ -97,21 +95,19 @@ export default class BookmarksFolder extends Component<Args> {
     } finally {
       this.stagedDeletingTrade = null;
     }
-  }
+  });
 
-  @dropTask
-  *reorderTradesTask(reorderedTrades: BookmarksTradeStruct[]) {
+  reorderTradesTask = dropTask(async (reorderedTrades: BookmarksTradeStruct[]) => {
     this.trades = reorderedTrades;
 
-    yield this.bookmarks.persistTrades(this.trades, this.folderId);
-  }
+    await this.bookmarks.persistTrades(this.trades, this.folderId);
+  });
 
-  @dropTask
-  *persistTradeTask(trade: BookmarksTradeStruct) {
+  persistTradeTask = dropTask(async (trade: BookmarksTradeStruct) => {
     try {
       const isNewlyCreated = !trade.id;
-      yield this.bookmarks.persistTrade(trade, this.folderId);
-      this.trades = yield this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
+      await this.bookmarks.persistTrade(trade, this.folderId);
+      this.trades = await this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
 
       const successTranslationKey = isNewlyCreated
         ? 'page.bookmarks.folder.create-trade-success-flash'
@@ -122,14 +118,13 @@ export default class BookmarksFolder extends Component<Args> {
     } finally {
       this.stagedTrade = null;
     }
-  }
+  });
 
-  @dropTask
-  *updateTradeLocationTask(trade: BookmarksTradeStruct) {
+  updateTradeLocationTask = dropTask(async (trade: BookmarksTradeStruct) => {
     if (!this.tradeLocation.slug || !this.tradeLocation.type) return;
 
     try {
-      yield this.bookmarks.persistTrade(
+      await this.bookmarks.persistTrade(
         {
           ...trade,
           location: {
@@ -141,7 +136,7 @@ export default class BookmarksFolder extends Component<Args> {
         this.folderId
       );
 
-      this.trades = yield this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
+      this.trades = await this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
 
       this.flashMessages.success(
         this.intl.t('page.bookmarks.folder.persist-trade-location-success-flash', {title: trade.title})
@@ -151,13 +146,12 @@ export default class BookmarksFolder extends Component<Args> {
     } finally {
       this.stagedTrade = null;
     }
-  }
+  });
 
-  @dropTask
-  *toggleTradeCompletionTask(trade: BookmarksTradeStruct) {
-    yield this.bookmarks.toggleTradeCompletion(trade, this.folderId);
-    this.trades = yield this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
-  }
+  toggleTradeCompletionTask = dropTask(async (trade: BookmarksTradeStruct) => {
+    await this.bookmarks.toggleTradeCompletion(trade, this.folderId);
+    this.trades = await this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
+  });
 
   @action
   unstageTrade() {

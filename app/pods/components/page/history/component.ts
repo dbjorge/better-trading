@@ -25,27 +25,24 @@ export default class PageHistory extends Component {
   @tracked
   historyEntries: TradeLocationHistoryStruct[] = [];
 
-  @restartableTask
-  *refetchHistoryTask() {
-    this.historyEntries = yield this.tradeLocation.fetchHistoryEntries();
-  }
+  refetchHistoryTask = restartableTask(async () => {
+    this.historyEntries = await this.tradeLocation.fetchHistoryEntries();
+  });
 
-  @dropTask
-  *initialFetchHistoryTask() {
-    yield (this.refetchHistoryTask as Task).perform();
-  }
+  initialFetchHistoryTask = dropTask(async () => {
+    await (this.refetchHistoryTask as Task).perform();
+  });
 
-  @dropTask
-  *clearHistoryTask() {
+  clearHistoryTask = dropTask(async () => {
     try {
       this.historyEntries = [];
-      yield this.tradeLocation.clearHistoryEntries();
+      await this.tradeLocation.clearHistoryEntries();
 
       this.flashMessages.success(this.intl.t('page.history.clear-success-flash'));
     } catch (_error) {
       this.flashMessages.alert(this.intl.t('general.generic-alert-flash'));
     }
-  }
+  });
 
   @action
   subscribeToLocationChange() {
