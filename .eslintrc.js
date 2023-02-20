@@ -122,7 +122,7 @@ module.exports = {
       },
       extends: ['plugin:node/recommended']
     },
-    // TODO: suggested by ember-cli-update --to 3.28.2, add this if switching to qunit
+    // TODO: suggested by ember-cli-update --to 3.28.2 and --to 4.8, add this if switching to qunit
     // {
     //   // Test files:
     //   files: ['tests/**/*-test.{js,ts}'],
