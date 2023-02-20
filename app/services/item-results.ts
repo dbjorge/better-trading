@@ -26,12 +26,14 @@ export default class ItemResults extends Service.extend(Evented) {
   pinnableEnhancer: Pinnable;
 
   @tracked
-  disabledEnhancerSlugs: string[] = (this.storage.getLocalValue(DISABLED_ENHANCERS_STORAGE_KEY) || '')
-    .split(',')
-    .filter(Boolean);
+  disabledEnhancerSlugs: string[];
 
   async initialize() {
     await this.enhance.initialize();
+
+    this.disabledEnhancerSlugs = (this.storage.getLocalValue(DISABLED_ENHANCERS_STORAGE_KEY) || '')
+      .split(',')
+      .filter(Boolean);
   }
 
   getEnhancerSlugs() {

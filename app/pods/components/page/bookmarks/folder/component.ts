@@ -44,7 +44,7 @@ export default class BookmarksFolder extends Component<Args> {
   intl: IntlService;
 
   @tracked
-  currentLeague: string | null = this.tradeLocation.league;
+  currentLeague: string | null = null;
 
   @tracked
   stagedTrade: BookmarksTradeStruct | null;
@@ -71,6 +71,11 @@ export default class BookmarksFolder extends Component<Args> {
 
   get isArchived() {
     return Boolean(this.args.folder.archivedAt);
+  }
+
+  constructor(owner: unknown, args: Args) {
+    super(owner, args);
+    this.currentLeague = this.tradeLocation.league;
   }
 
   @dropTask

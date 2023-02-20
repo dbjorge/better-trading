@@ -39,7 +39,7 @@ export default class PageBookmarks extends Component {
   newFolderId: number | null = null;
 
   @tracked
-  expandedFolderIds: string[] = this.bookmarks.getExpandedFolderIds();
+  expandedFolderIds: string[] = [];
 
   @tracked
   isImportingFolder: boolean = false;
@@ -82,6 +82,11 @@ export default class PageBookmarks extends Component {
   get foldersWarningIsVisible() {
     if (this.isShowingArchivedFolders) return false;
     return this.displayedFolders.length >= FOLDERS_WARNING_THRESHOLD;
+  }
+
+  constructor(owner: unknown, args: {}) {
+    super(owner, args);
+    this.expandedFolderIds = this.bookmarks.getExpandedFolderIds();
   }
 
   @dropTask

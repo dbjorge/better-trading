@@ -25,10 +25,15 @@ export default class RootController extends Controller {
   itemResults: ItemResults;
 
   @tracked
-  currentPage: RootPage = (this.storage.getLocalValue(CURRENT_PAGE_KEY) as RootPage) || RootPage.BOOKMARKS;
+  currentPage: RootPage;
 
   get currentPageComponentName() {
     return `page/${this.currentPage}`;
+  }
+
+  constructor() {
+    super(...arguments);
+    this.currentPage = (this.storage.getLocalValue(CURRENT_PAGE_KEY) as RootPage) || RootPage.BOOKMARKS;
   }
 
   @action
