@@ -14,7 +14,7 @@
   "repository": "https://github.com/poe-world/better-trading",
   "engine-strict": true,
   "engines": {
-    "node": "12.* || 14.* || >= 16",
+    "node": "~14.21",
     "npm": "~8.19"
   },
   "scripts": {
