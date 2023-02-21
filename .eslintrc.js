@@ -30,7 +30,6 @@ module.exports = {
       extends: [
         'plugin:mirego/recommended',
         'prettier',
-        'prettier/@typescript-eslint'
       ],
       files: ['app/**/*', 'tests/**/*', 'types/**/*'],
       env: {
@@ -45,13 +44,13 @@ module.exports = {
         'ember/no-on-calls-in-components': 2,
         'ember/no-duplicate-dependent-keys': 2,
         'ember/no-side-effects': 2,
-        'ember/require-super-in-init': 2,
+        'ember/require-super-in-lifecycle-hooks': 2,
         'ember/avoid-leaking-state-in-ember-objects': 2,
         'ember/use-brace-expansion': 2,
         '@typescript-eslint/adjacent-overload-signatures': 2,
         '@typescript-eslint/array-type': [2, {default: 'array-simple'}],
         '@typescript-eslint/await-thenable': 2,
-        '@typescript-eslint/ban-ts-ignore': 2,
+        '@typescript-eslint/ban-ts-comment': 2,
         '@typescript-eslint/consistent-type-assertions': [
           2,
           {assertionStyle: 'as'}
