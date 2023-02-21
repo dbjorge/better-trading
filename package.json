@@ -11,6 +11,7 @@
     "name": "Better PathOfExile Trading",
     "description": ""
   },
+  "browserslist": ["last 2 Chrome versions", "last 2 Firefox versions"],
   "repository": "https://github.com/poe-world/better-trading",
   "engine-strict": true,
   "engines": {
@@ -74,7 +75,7 @@
     "ember-concurrency": "~2.3.7",
     "ember-css-modules": "~2.0.1",
     "ember-css-modules-sass": "~1.1.0",
-    "ember-exam": "~8.0.0",
+    "ember-exam": "~6.0.1",
     "ember-fetch": "~8.1.2",
     "ember-intl": "~4.2.0",
     "ember-load-initializers": "~2.1.2",
