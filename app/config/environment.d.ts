@@ -11,7 +11,7 @@ declare const config: {
   environment: 'development' | 'test' | 'production';
   modulePrefix: string;
   podModulePrefix: string;
-  locationType: string;
+  locationType: 'history' | 'hash' | 'none' | 'auto';
   rootURL: string;
 
   APP: {

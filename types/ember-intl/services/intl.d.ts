@@ -1,7 +1,8 @@
+import Service from '@ember/service';
 import IntlService from 'ember-intl/services/intl';
 
 declare module 'ember-intl/services/intl' {
-  export default class IntlService {
+  export default class IntlService extends Service {
     locales: string[];
     t(translationKey: string, optionalOptions?: object, optionalFormats?: object): string;
     exists(translationKey: string, localeName: string): boolean;

@@ -1,3 +1,4 @@
+import Service from '@ember/service';
 import FlashMessages from 'ember-cli-flash/services/flash-messages';
 
 declare module 'ember-cli-flash/services/flash-messages' {
@@ -9,7 +10,7 @@ declare module 'ember-cli-flash/services/flash-messages' {
     onDestroy?: () => void;
   }
 
-  export default class FlashMessages {
+  export default class FlashMessages extends Service {
     success(message: string, options?: FlashOptions): void;
     warning(message: string, options?: FlashOptions): void;
     info(message: string, options?: FlashOptions): void;
