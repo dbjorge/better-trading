@@ -9,13 +9,10 @@ module.exports = {
     ecmaFeatures: {
       legacyDecorators: true,
     },
+    requireConfigFile: false,
   },
   plugins: ['ember'],
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:ember/recommended', 'plugin:prettier/recommended'],
   env: {
     browser: true,
   },
@@ -24,17 +21,14 @@ module.exports = {
     {
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: './tsconfig.json'
+        project: './tsconfig.json',
       },
       plugins: ['@typescript-eslint', 'ember', 'mirego'],
-      extends: [
-        'plugin:mirego/recommended',
-        'prettier',
-      ],
+      extends: ['plugin:mirego/recommended', 'prettier'],
       files: ['app/**/*', 'tests/**/*', 'types/**/*'],
       env: {
         es6: true,
-        browser: true
+        browser: true,
       },
       rules: {
         'ember/closure-actions': 2,
@@ -50,27 +44,21 @@ module.exports = {
         '@typescript-eslint/adjacent-overload-signatures': 2,
         '@typescript-eslint/array-type': [2, {default: 'array-simple'}],
         '@typescript-eslint/await-thenable': 2,
-        '@typescript-eslint/ban-ts-comment': [
-          2,
-          { 'ts-expect-error': { descriptionFormat: '^: TS\\d+ because .+$' } }
-        ],
-        '@typescript-eslint/consistent-type-assertions': [
-          2,
-          {assertionStyle: 'as'}
-        ],
+        '@typescript-eslint/ban-ts-comment': [2, {'ts-expect-error': {descriptionFormat: '^: TS\\d+ because .+$'}}],
+        '@typescript-eslint/consistent-type-assertions': [2, {assertionStyle: 'as'}],
         '@typescript-eslint/consistent-type-definitions': [2, 'interface'],
         '@typescript-eslint/member-delimiter-style': [
           2,
           {
             multiline: {
               delimiter: 'semi',
-              requireLast: true
+              requireLast: true,
             },
             singleline: {
               delimiter: 'semi',
-              requireLast: false
-            }
-          }
+              requireLast: false,
+            },
+          },
         ],
         '@typescript-eslint/member-ordering': 2,
         '@typescript-eslint/no-empty-interface': 2,
@@ -86,15 +74,12 @@ module.exports = {
         '@typescript-eslint/type-annotation-spacing': 2,
         '@typescript-eslint/unified-signatures': 2,
         'no-unused-vars': 0,
-        '@typescript-eslint/no-unused-vars': [
-          'error',
-          {argsIgnorePattern: '^_', varsIgnorePattern: '^_'}
-        ]
-      }
+        '@typescript-eslint/no-unused-vars': ['error', {argsIgnorePattern: '^_', varsIgnorePattern: '^_'}],
+      },
     },
     {
       files: [
-        './.ember-cli.js',        
+        './.ember-cli.js',
         './.eslintrc.js',
         './.prettierrc.js',
         './.template-lintrc.js',
@@ -120,9 +105,9 @@ module.exports = {
 
         // this can be removed once the following is fixed
         // https://github.com/mysticatea/eslint-plugin-node/issues/77
-        'node/no-unpublished-require': 'off'
+        'node/no-unpublished-require': 'off',
       },
-      extends: ['plugin:node/recommended']
+      extends: ['plugin:node/recommended'],
     },
     // TODO: suggested by ember-cli-update --to 3.28.2 and --to 4.8, add this if switching to qunit
     // {
@@ -130,5 +115,5 @@ module.exports = {
     //   files: ['tests/**/*-test.{js,ts}'],
     //   extends: ['plugin:qunit/recommended'],
     // },
-  ]
+  ],
 };
