@@ -47,7 +47,6 @@ module.exports = function (defaults) {
       // which would implicitly use eval in built versions of the app.
       forbidEval: true,
 
-      
       // This is required to ensure that ember-auto-import produces a single chunk
       // with a consistent name, so we can specify that file in the contentScript
       // section of manfiest.json. In practice, "[id]" is either "app" or "test".
