@@ -14,8 +14,8 @@
   "repository": "https://github.com/poe-world/better-trading",
   "engine-strict": true,
   "engines": {
-    "node": "14.* || 16.* || >= 18",
-    "npm": "~8.19"
+    "node": "~18.14",
+    "npm": "~9.5"
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -43,7 +43,6 @@
     "@types/ember-test-helpers": "~1.0.11",
     "@types/ember-testing-helpers": "~0.0.4",
     "@types/ember__owner": "~4.0.3",
-    "@types/handlebars": "~4.1.0",
     "@types/lodash": "~4.14.191",
     "@types/mocha": "~10.0.1",
     "@types/rsvp": "~4.0.4",
