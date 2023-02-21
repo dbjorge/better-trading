@@ -57,7 +57,7 @@ package-chrome: ## Package the chrome extension
 	rm -rf ./dist
 	export TARGET_BROWSER=chrome; npx ember build --environment production --output-path ./dist/ember-build
 	mkdir -p ./dist/staged/assets
-	cp -R ./dist/ember-build/assets/{better-trading.js,better-trading.css,vendor.js,vendor.css,images} ./dist/staged/assets
+	cp -R ./dist/ember-build/assets/{better-trading.js,better-trading.css,ember-auto-import.app.js,vendor.js,vendor.css,images} ./dist/staged/assets
 	node ./scripts/scaffold-extension.js production
 	mkdir -p ./dist-packages
 	(cd ./dist/staged/; zip -r ../../dist-packages/chrome.zip *)
@@ -69,7 +69,7 @@ package-firefox: ## Package the firefox extension
 	rm -rf ./dist
 	export TARGET_BROWSER=firefox; npx ember build --environment production --output-path ./dist/ember-build
 	mkdir -p ./dist/staged/assets
-	cp -R ./dist/ember-build/assets/{better-trading.js,better-trading.css,vendor.js,vendor.css,images} ./dist/staged/assets
+	cp -R ./dist/ember-build/assets/{better-trading.js,better-trading.css,ember-auto-import.app.js,vendor.js,vendor.css,images} ./dist/staged/assets
 	node ./scripts/scaffold-extension.js production
 	## Patch the vendor.js to prevent a check from failing on Firefox
 	sed -i "" -E 's/var t="object"==typeof self&&null!==self&&self.Object===Object&&"undefined"!=typeof Window&&self.constructor===Window&&"object"==typeof document&&null!==document&&self.document===document&&"object"==typeof location&&null!==location&&self.location===location&&"object"==typeof history&&null!==history&&self.history===history&&"object"==typeof navigator&&null!==navigator&&self.navigator===navigator&&"string"==typeof navigator.userAgent/var t=true/g' ./dist/staged/assets/vendor.js
