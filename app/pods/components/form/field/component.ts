@@ -1,9 +1,11 @@
 // Vendor
-import Component from '@glimmer/component';
+import templateOnly from '@ember/component/template-only';
 
 interface Args {
   label: string;
   helper?: string;
 }
 
-export default class FormField extends Component<Args> {}
+const FormField = templateOnly<Args>();
+
+export default FormField;

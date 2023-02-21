@@ -20,12 +20,12 @@ if (document.querySelector('#trade')) {
 document.body.appendChild(extensionContainer);
 
 const {modulePrefix, podModulePrefix} = config;
-const App = Application.extend({
-  rootElement: extensionContainer,
-  modulePrefix,
-  podModulePrefix,
-  Resolver,
-});
+class App extends Application {
+  rootElement = extensionContainer;
+  modulePrefix = modulePrefix;
+  podModulePrefix = podModulePrefix;
+  Resolver = Resolver;
+}
 
 loadInitializers(App, modulePrefix);
 

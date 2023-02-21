@@ -50,7 +50,10 @@ module.exports = {
         '@typescript-eslint/adjacent-overload-signatures': 2,
         '@typescript-eslint/array-type': [2, {default: 'array-simple'}],
         '@typescript-eslint/await-thenable': 2,
-        '@typescript-eslint/ban-ts-comment': 2,
+        '@typescript-eslint/ban-ts-comment': [
+          2,
+          { 'ts-expect-error': { descriptionFormat: '^: TS\\d+ because .+$' } }
+        ],
         '@typescript-eslint/consistent-type-assertions': [
           2,
           {assertionStyle: 'as'}

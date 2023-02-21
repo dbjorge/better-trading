@@ -16,9 +16,9 @@ interface ExtensionApi {
   };
 }
 
+declare const chrome: ExtensionApi;
+declare const browser: ExtensionApi;
+
 export const extensionApi = (): ExtensionApi => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  // eslint-disable-next-line no-undef
   return config.APP.browser === 'chrome' ? chrome : browser;
 };

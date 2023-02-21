@@ -29,12 +29,6 @@ export default class PagePinnedItems extends Component {
   @tracked
   pinnedItems: ItemResultsPinnedItem[] = [];
 
-  get sortedPinnedItems() {
-    return this.pinnedItems.sort(
-      (pinnedItemA, pinnedItemB) => new Date(pinnedItemA.pinnedAt).getTime() - new Date(pinnedItemB.pinnedAt).getTime()
-    );
-  }
-
   scrollToItemTask = task(async (itemId: string) => {
     const itemElement = window.document.querySelector(`div.row[data-id="${itemId}"]`);
     if (!itemElement) {
@@ -49,6 +43,12 @@ export default class PagePinnedItems extends Component {
     await timeout(SCROLL_ANIMATION_DURATION_IN_MILLISECONDS);
     itemElement.classList.remove('bt-pinned-glow');
   });
+
+  get sortedPinnedItems() {
+    return this.pinnedItems.sort(
+      (pinnedItemA, pinnedItemB) => new Date(pinnedItemA.pinnedAt).getTime() - new Date(pinnedItemB.pinnedAt).getTime()
+    );
+  }
 
   @action
   subscribeToPinnedItemsChange() {

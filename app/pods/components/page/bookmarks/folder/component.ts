@@ -60,23 +60,6 @@ export default class BookmarksFolder extends Component<Args> {
   @tracked
   isExporting: boolean = false;
 
-  get folderId() {
-    return this.args.folder.id;
-  }
-
-  get isExpanded() {
-    return !this.isArchived && this.args.expandedFolderIds.includes(this.args.folder.id);
-  }
-
-  get isArchived() {
-    return Boolean(this.args.folder.archivedAt);
-  }
-
-  constructor(owner: unknown, args: Args) {
-    super(owner, args);
-    this.currentLeague = this.tradeLocation.league;
-  }
-
   initialLoadTradesTask = dropTask(async () => {
     this.trades = await this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
   });
@@ -151,6 +134,23 @@ export default class BookmarksFolder extends Component<Args> {
     await this.bookmarks.toggleTradeCompletion(trade, this.folderId);
     this.trades = await this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
   });
+
+  constructor(owner: unknown, args: Args) {
+    super(owner, args);
+    this.currentLeague = this.tradeLocation.league;
+  }
+
+  get folderId() {
+    return this.args.folder.id;
+  }
+
+  get isExpanded() {
+    return !this.isArchived && this.args.expandedFolderIds.includes(this.args.folder.id);
+  }
+
+  get isArchived() {
+    return Boolean(this.args.folder.archivedAt);
+  }
 
   @action
   unstageTrade() {

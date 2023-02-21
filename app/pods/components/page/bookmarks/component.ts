@@ -47,48 +47,6 @@ export default class PageBookmarks extends Component {
   @tracked
   isShowingArchivedFolders: boolean = false;
 
-  get applicableFolders() {
-    return this.folders.filter(({version}) => version === this.tradeLocation.version);
-  }
-
-  get olderVersionFolders() {
-    return this.folders.filter(({version}) => version < this.tradeLocation.version);
-  }
-
-  get newerVersionFolders() {
-    return this.folders.filter(({version}) => version > this.tradeLocation.version);
-  }
-
-  get displayedFolders() {
-    return this.isShowingArchivedFolders ? this.archivedFolders : this.activeFolders;
-  }
-
-  get activeFolders() {
-    return this.applicableFolders.filter(({archivedAt}) => !Boolean(archivedAt));
-  }
-
-  get archivedFolders() {
-    return this.applicableFolders.filter(({archivedAt}) => Boolean(archivedAt));
-  }
-
-  get hasArchivedFolders() {
-    return this.applicableFolders.some(({archivedAt}) => Boolean(archivedAt));
-  }
-
-  get hasActiveFolders() {
-    return this.applicableFolders.some(({archivedAt}) => !Boolean(archivedAt));
-  }
-
-  get foldersWarningIsVisible() {
-    if (this.isShowingArchivedFolders) return false;
-    return this.displayedFolders.length >= FOLDERS_WARNING_THRESHOLD;
-  }
-
-  constructor(owner: unknown, args: {}) {
-    super(owner, args);
-    this.expandedFolderIds = this.bookmarks.getExpandedFolderIds();
-  }
-
   initialFetchFoldersTask = dropTask(async () => {
     this.folders = await this.bookmarks.fetchFolders();
   });
@@ -158,6 +116,48 @@ export default class PageBookmarks extends Component {
       }
     }
   );
+
+  constructor(owner: unknown, args: {}) {
+    super(owner, args);
+    this.expandedFolderIds = this.bookmarks.getExpandedFolderIds();
+  }
+
+  get applicableFolders() {
+    return this.folders.filter(({version}) => version === this.tradeLocation.version);
+  }
+
+  get olderVersionFolders() {
+    return this.folders.filter(({version}) => version < this.tradeLocation.version);
+  }
+
+  get newerVersionFolders() {
+    return this.folders.filter(({version}) => version > this.tradeLocation.version);
+  }
+
+  get displayedFolders() {
+    return this.isShowingArchivedFolders ? this.archivedFolders : this.activeFolders;
+  }
+
+  get activeFolders() {
+    return this.applicableFolders.filter(({archivedAt}) => !Boolean(archivedAt));
+  }
+
+  get archivedFolders() {
+    return this.applicableFolders.filter(({archivedAt}) => Boolean(archivedAt));
+  }
+
+  get hasArchivedFolders() {
+    return this.applicableFolders.some(({archivedAt}) => Boolean(archivedAt));
+  }
+
+  get hasActiveFolders() {
+    return this.applicableFolders.some(({archivedAt}) => !Boolean(archivedAt));
+  }
+
+  get foldersWarningIsVisible() {
+    if (this.isShowingArchivedFolders) return false;
+    return this.displayedFolders.length >= FOLDERS_WARNING_THRESHOLD;
+  }
 
   @action
   toggleArchiveDisplay() {

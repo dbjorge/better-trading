@@ -27,13 +27,13 @@ export default class RootController extends Controller {
   @tracked
   currentPage: RootPage;
 
-  get currentPageComponentName() {
-    return `page/${this.currentPage}`;
-  }
-
   constructor() {
     super(...arguments);
     this.currentPage = (this.storage.getLocalValue(CURRENT_PAGE_KEY) as RootPage) || RootPage.BOOKMARKS;
+  }
+
+  get currentPageComponentName() {
+    return `page/${this.currentPage}`;
   }
 
   @action

@@ -27,6 +27,26 @@ export default class TradeLocation extends Service.extend(Evented) {
 
   lastTradeLocation: ExactTradeLocationStruct = this.currentTradeLocation;
 
+  locationPollingTask = restartableTask(async () => {
+    const currentTradeLocation = this.currentTradeLocation;
+
+    if (!this.compareExactTradeLocations(this.lastTradeLocation, currentTradeLocation)) {
+      const changeEvent: TradeLocationChangeEvent = {
+        oldTradeLocation: this.lastTradeLocation,
+        newTradeLocation: currentTradeLocation,
+      };
+
+      await this.tradeLocationHistory.maybeLogTradeLocation(currentTradeLocation);
+      this.trigger('change', changeEvent);
+      this.lastTradeLocation = currentTradeLocation;
+    }
+
+    await timeout(config.APP.locationPollingIntervalInMilliseconds);
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    (this.locationPollingTask as Task).perform();
+  });
+
   get version(): TradeSiteVersion {
     return this.currentTradeLocation.version;
   }
@@ -50,26 +70,6 @@ export default class TradeLocation extends Service.extend(Evented) {
   get currentTradeLocation(): ExactTradeLocationStruct {
     return this.parseCurrentPath();
   }
-
-  locationPollingTask = restartableTask(async () => {
-    const currentTradeLocation = this.currentTradeLocation;
-
-    if (!this.compareExactTradeLocations(this.lastTradeLocation, currentTradeLocation)) {
-      const changeEvent: TradeLocationChangeEvent = {
-        oldTradeLocation: this.lastTradeLocation,
-        newTradeLocation: currentTradeLocation,
-      };
-
-      await this.tradeLocationHistory.maybeLogTradeLocation(currentTradeLocation);
-      this.trigger('change', changeEvent);
-      this.lastTradeLocation = currentTradeLocation;
-    }
-
-    await timeout(config.APP.locationPollingIntervalInMilliseconds);
-
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    (this.locationPollingTask as Task).perform();
-  });
 
   initialize() {
     window.addEventListener('focus', this.startLocationPolling.bind(this));

@@ -15,9 +15,6 @@ export default class ItemResultsEnhance extends Service {
   @service('item-results')
   itemResults: ItemResults;
 
-  private resultsObserver: MutationObserver;
-  private enhancerServices: ItemResultsEnhancerService[] = [];
-
   enhanceTask = enqueueTask(async () => {
     const itemElementsCount = window.document.querySelectorAll('.resultset > div.row').length;
     const unenhancedElements = Array.prototype.slice.call(
@@ -30,6 +27,9 @@ export default class ItemResultsEnhance extends Service {
       await this.clearEnhancedItems();
     }
   });
+
+  private resultsObserver: MutationObserver;
+  private enhancerServices: ItemResultsEnhancerService[] = [];
 
   getEnhancerSlugs() {
     return this.enhancerServices.map((enhancerService) => enhancerService.slug || '').filter(Boolean);

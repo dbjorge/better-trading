@@ -1,5 +1,5 @@
 // Vendor
-import Component from '@glimmer/component';
+import templateOnly from '@ember/component/template-only';
 
 // Types
 import {Task} from 'better-trading/types/ember-concurrency';
@@ -9,4 +9,6 @@ interface Args {
   size: 'small' | 'large';
 }
 
-export default class LoadingContainer extends Component<Args> {}
+const LoadingContainer = templateOnly<Args>();
+
+export default LoadingContainer;

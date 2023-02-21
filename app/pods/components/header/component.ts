@@ -21,13 +21,13 @@ export default class Header extends Component {
   @tracked
   expandButtonIsVisible: boolean = false;
 
-  get isOnRootRoute() {
-    return this.router.currentRouteName === 'root';
-  }
-
   constructor(owner: unknown, args: {}) {
     super(owner, args);
     this.expandButtonIsVisible = Boolean(this.storage.getLocalValue(COLLAPSED_STORAGE_KEY));
+  }
+
+  get isOnRootRoute() {
+    return this.router.currentRouteName === 'root';
   }
 
   @action

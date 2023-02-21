@@ -1,5 +1,5 @@
 // Vendor
-import Component from '@glimmer/component';
+import templateOnly from '@ember/component/template-only';
 
 // Types
 import {BookmarksTradeStruct} from 'better-trading/types/bookmarks';
@@ -10,4 +10,6 @@ interface Args {
   submitTask: any;
 }
 
-export default class TradeDeletion extends Component<Args> {}
+const TradeDeletion = templateOnly<Args>();
+
+export default TradeDeletion;

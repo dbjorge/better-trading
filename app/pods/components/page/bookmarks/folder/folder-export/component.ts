@@ -24,6 +24,13 @@ export default class FolderExport extends Component<Args> {
   @tracked
   serializedFolder: string = '';
 
+  serializeFolderTask = dropTask(async () => {
+    const folder = this.args.folder;
+    const trades = await this.bookmarks.fetchTradesByFolderId(folder.id);
+
+    this.serializedFolder = this.bookmarks.serializeFolder(folder, trades);
+  });
+
   get previewUrl() {
     return `${PREVIEW_BASE_URL}?b64=${this.serializedFolder}`;
   }
@@ -45,11 +52,4 @@ export default class FolderExport extends Component<Args> {
 
     return `<iframe ${iframeAttributes.join(' ')}></iframe>`;
   }
-
-  serializeFolderTask = dropTask(async () => {
-    const folder = this.args.folder;
-    const trades = await this.bookmarks.fetchTradesByFolderId(folder.id);
-
-    this.serializedFolder = this.bookmarks.serializeFolder(folder, trades);
-  });
 }

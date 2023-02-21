@@ -23,6 +23,11 @@ export default class ContextualMenu extends Component {
   @tracked
   displayPosition: Position | null = null;
 
+  debouncedHideItemsTask = restartableTask(async () => {
+    await timeout(HIDE_DEBOUNCE_DELAY_IN_MILLISECONDS);
+    this.hideItems();
+  });
+
   get itemsAreVisible() {
     return Boolean(this.displayPosition);
   }
@@ -41,11 +46,6 @@ export default class ContextualMenu extends Component {
       left: `${this.displayPosition.x}px`,
     };
   }
-
-  debouncedHideItemsTask = restartableTask(async () => {
-    await timeout(HIDE_DEBOUNCE_DELAY_IN_MILLISECONDS);
-    this.hideItems();
-  });
 
   @action
   showItems(event: MouseEvent) {

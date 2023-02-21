@@ -1,8 +1,10 @@
 // Vendor
-import Component from '@glimmer/component';
+import templateOnly from '@ember/component/template-only';
 
 interface Args {
   markdown: string;
 }
 
-export default class MarkdownChangelog extends Component<Args> {}
+const MarkdownChangelog = templateOnly<Args>();
+
+export default MarkdownChangelog;

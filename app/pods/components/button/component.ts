@@ -13,14 +13,14 @@ interface Args {
 }
 
 export default class Button extends Component<Args> {
+  get fileAccept() {
+    return this.args.fileAccept || '*';
+  }
+
   @action
   handleClick() {
     if (!this.args.onClick) return;
 
     this.args.onClick();
-  }
-
-  get fileAccept() {
-    return this.args.fileAccept || '*';
   }
 }

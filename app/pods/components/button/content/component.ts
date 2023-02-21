@@ -8,7 +8,7 @@ interface Args {
 
 export default class ButtonContent extends Component<Args> {
   get iconPrefix() {
-    if (!this.args.icon) return;
+    if (!this.args.icon) return undefined;
     if (['github', 'discord'].includes(this.args.icon)) return 'fab';
 
     return 'fas';

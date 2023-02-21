@@ -6,10 +6,8 @@ import {ItemResultsEnhancerService} from 'better-trading/types/item-results';
 export const initialize = (appInstance: ApplicationInstance): void => {
   const itemResultsEnhanceService = appInstance.lookup('service:item-results/enhance');
 
-  // TypeScript thinks that `require` is `NodeRequire`
-  // We need to ignore it to access `entries` on it.
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
+  // @ts-expect-error: TS2339 because ember's build incorrectly uses NodeJS typings for require
+  // instead of browser typings
   Object.keys(require.entries)
     .filter((moduleName) => moduleName.startsWith('better-trading/services/item-results/enhancers/'))
     .map((moduleName) => moduleName.replace('better-trading/services/', ''))
