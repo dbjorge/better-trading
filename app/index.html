@@ -1,4 +1,12 @@
 <!--
 Since the app in injected via the browser extension API, the file is not used.
 Its presence is required by Ember-cli to work properly
+Some boilerplate is required for ember-auto-import to work propertly
 -->
+
+<body>
+  {{content-for "body"}}
+  <script src="{{rootURL}}assets/vendor.js"></script>
+  <script src="{{rootURL}}assets/better-trading.js"></script>
+  {{content-for "body-footer"}}
+</body>
