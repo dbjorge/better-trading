@@ -3,7 +3,6 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const targets = require('./config/targets');
 
 const IS_TEST_ENVIRONMENT = EmberApp.env() === 'test';
 
@@ -22,7 +21,6 @@ module.exports = function (defaults) {
     },
 
     autoprefixer: {
-      browsers: targets.browsers,
       sourcemap: false,
     },
 
@@ -48,6 +46,7 @@ module.exports = function (defaults) {
     // which would implicitly use eval in built versions of the app.
     autoImport: {
       forbidEval: true,
+      insertScriptsAt: null,
     },
 
     sourcemaps: {
