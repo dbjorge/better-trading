@@ -19,7 +19,6 @@ import IntlService from 'ember-intl/services/intl';
 
 interface Args {
   folder: Required<BookmarksFolderStruct>;
-  dragHandle: any;
   expandedFolderIds: string[];
   onEdit: () => void;
   onDelete: () => void;

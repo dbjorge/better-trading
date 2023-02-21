@@ -27,34 +27,27 @@
     {{/if}}
   </div>
 
-  <SortableGroup
+  <div
     local-class="folders-wrapper"
-    @tagName="div"
-    @model={{this.displayedFolders}}
-    @onChange={{perform this.reorderFoldersTask}}
-    as |group|
+    {{sortable-group groupName="folders" onChange=(perform this.reorderFoldersTask)}}
   >
     {{#each this.displayedFolders key="id" as |folder|}}
-      {{#component
-        group.item
+      <div
         local-class="folder-wrapper"
-        tagName="div"
-        model=folder
-      as |dragItem|
-      }}
+        {{sortable-item groupName="folders" model=folder}}
+      >
         <Page::Bookmarks::Folder
           local-class="folder"
           @folder={{folder}}
-          @dragHandle={{dragItem.handle}}
           @expandedFolderIds={{this.expandedFolderIds}}
           @onEdit={{fn this.stageFolder folder}}
           @onDelete={{perform this.deleteFolderTask folder}}
           @onExpansionToggle={{fn this.toggleFolderExpansion folder.id}}
           @onArchiveToggle={{perform this.toggleFolderArchiveTask folder}}
         />
-      {{/component}}
+      </div>
     {{/each}}
-  </SortableGroup>
+  </div>
 
   {{#unless this.isShowingArchivedFolders}}
     <div local-class="actions">

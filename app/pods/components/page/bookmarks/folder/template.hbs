@@ -52,14 +52,9 @@
         />
       </ContextualMenu>
 
-      {{#component
-        @dragHandle
-        tagName="button"
-        type="button"
-        local-class="header-action"
-      }}
+      <button {{sortable-handle}} local-class="header-action">
         <FaIcon @icon="sort" />
-      {{/component}}
+      </button>
     </div>
   </div>
 
@@ -68,25 +63,20 @@
       @task={{this.initialLoadTradesTask}}
       @size="small"
     >
-      <SortableGroup
+      <ul {{sortable-group groupName=@folder.id onChange=(perform this.reorderTradesTask)}}
         {{did-insert (fn this.watchLeagueChange)}}
         {{will-destroy (fn this.teardownLeagueChange)}}
         local-class="trades {{if this.isReorderingTrades "is-reordering"}}"
-        @tagName="ul"
-        @model={{this.trades}}
-        @onChange={{perform this.reorderTradesTask}}
-        as |group|
       >
         {{#each this.trades key="id" as |trade|}}
-          {{#component
-            group.item
+          <li
             local-class="trade"
-            tagName="li"
-            model=trade
-            onDragStart=(fn this.startTradesReordering)
-            onDragStop=(fn this.stopTradesReordering)
-          as |dragItem|
-          }}
+            {{sortable-item groupName=@folder.id
+              model=trade
+              onDragStart=(fn this.startTradesReordering)
+              onDragStop=(fn this.stopTradesReordering)
+            }}
+          >
             <a href={{trade-url trade.location league=this.currentLeague}} local-class="trade-link">
               {{#if trade.completedAt}}
                 <span local-class="trade-link-completed">
@@ -131,18 +121,13 @@
                 />
               </ContextualMenu>
 
-              {{#component
-                dragItem.handle
-                tagName="button"
-                type="button"
-                local-class="trade-action"
-              }}
+              <button {{sortable-handle}} local-class="trade-action">
                 <FaIcon @icon="sort"/>
-              {{/component}}
+              </button>
             </div>
-          {{/component}}
+          </li>
         {{/each}}
-      </SortableGroup>
+      </ul>
 
       <div local-class="folder-actions">
         <Button
