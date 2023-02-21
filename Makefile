@@ -12,7 +12,6 @@ GIT_REVISION = `git rev-parse HEAD`
 
 PRETTIER_FILES_PATTERN = ember-cli-build.js testem.js '{app,tests,config,scripts}/**/*.{ts,js,graphql,scss}'
 STYLES_PATTERN = './app/**/*.scss'
-TEMPLATES_PATTERN = './app/**/*.hbs'
 
 # Introspection targets
 # ---------------------
@@ -126,7 +125,7 @@ lint-styles:
 
 .PHONY: lint-templates
 lint-templates:
-	npx ember-template-lint $(TEMPLATES_PATTERN)
+	npx ember-template-lint ./app
 
 .PHONY: lint-firefox
 lint-firefox:
