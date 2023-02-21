@@ -10,7 +10,6 @@ GIT_REVISION = `git rev-parse HEAD`
 # Linter and formatter configuration
 # ----------------------------------
 
-PRETTIER_FILES_PATTERN = ember-cli-build.js testem.js '{app,tests,config,scripts}/**/*.{ts,js,graphql,scss}'
 STYLES_PATTERN = './app/**/*.scss'
 
 # Introspection targets
@@ -98,7 +97,7 @@ test-browser: ## Run the test suite within a browser
 
 .PHONY: format
 format: ## Format project files
-	npx prettier --write $(PRETTIER_FILES_PATTERN)
+	npx prettier --write .
 	npx stylelint $(STYLES_PATTERN) --fix --quiet
 	npx eslint --ext .js,.ts . --fix --quiet
 
@@ -107,7 +106,7 @@ verify: lint-scripts lint-styles lint-templates check-format check-types ## veri
 
 .PHONY: check-format
 check-format: ## Verify prettier formatting
-	npx prettier --check $(PRETTIER_FILES_PATTERN)
+	npx prettier --check .
 
 .PHONY: check-types
 check-types: ## Verify typescript typings

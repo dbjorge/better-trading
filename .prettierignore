@@ -11,6 +11,9 @@
 /bower_components/
 /node_modules/
 
+# covered separately by ember-template-lint
+*.hbs
+
 # misc
 /coverage/
 !.*

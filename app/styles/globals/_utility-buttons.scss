@@ -1,7 +1,8 @@
+/* stylelint-disable selector-class-pattern */
 .results {
   button.refresh,
   button.copy,
-  button.searchBy { /* stylelint-disable-line selector-class-pattern */
+  button.searchBy {
     display: block !important;
     opacity: 0.6;
     transition: opacity 0.2s ease;
@@ -12,3 +13,4 @@
     }
   }
 }
+/* stylelint-enable selector-class-pattern */

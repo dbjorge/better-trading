@@ -4,14 +4,14 @@
 
 - Available on Mozilla Firefox
 - Search history
-    - Keep the last 50 trades
-    - Can be cleared
+  - Keep the last 50 trades
+  - Can be cleared
 - Export and import the bookmarks folders
 - Pin item results to compare them
-    - Added a "pin" button within item results tiles
-    - Pinned items are shown in the right panel
-    - Useful to compare and navigate while having a lot of results
-    - Pinned items are cleared when the search/page changes
+  - Added a "pin" button within item results tiles
+  - Pinned items are shown in the right panel
+  - Useful to compare and navigate while having a lot of results
+  - Pinned items are cleared when the search/page changes
 
 ## Improvements 💅
 
