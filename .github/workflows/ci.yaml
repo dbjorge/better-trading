@@ -24,8 +24,8 @@ jobs:
       - run: make test
         env:
           JOBS: 1 # See https://git.io/vdao3 for details
-      - run: make package-chrome
+      - run: make package
       - uses: actions/upload-artifact@v4
         with:
-          name: chrome-extension
-          path: dist-packages/chrome.zip
+          name: dist-packages
+          path: dist-packages/
