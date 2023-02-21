@@ -5,20 +5,20 @@ import {afterEach, beforeEach, describe, it} from 'mocha';
 import sinon from 'sinon';
 
 // Types
-import PageTitle from 'better-trading/services/page-title';
+import PageRetitler from 'better-trading/services/page-retitler';
 import TradeLocation from 'better-trading/services/trade-location';
 import {ExactTradeLocationStruct} from 'better-trading/types/trade-location';
 
-describe('Unit | Services | PageTitle', () => {
+describe('Unit | Services | PageRetitler', () => {
   setupTest();
 
-  let service: PageTitle;
+  let service: PageRetitler;
   let bookmarksMock: sinon.SinonMock;
   let searchPanelMock: sinon.SinonMock;
   let currentLocationStub: Partial<ExactTradeLocationStruct>;
 
   beforeEach(function () {
-    service = this.owner.lookup('service:page-title');
+    service = this.owner.lookup('service:page-retitler');
     service.baseSiteTitle = 'Base Site Title';
     bookmarksMock = sinon.mock(service.bookmarks);
     searchPanelMock = sinon.mock(service.searchPanel);

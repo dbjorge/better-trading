@@ -10,7 +10,9 @@ import TradeLocation from './trade-location';
 const TITLE_MUTATION_THROTTLE_SPACING_MS = 100;
 const WOOP_PREFIX_REGEX = /^\((\d+)\) /;
 
-export default class PageTitle extends Service {
+// Naming note: this cannot be called "PageTitle" because of a naming
+// conflict with the ember-page-title dependency
+export default class PageRetitler extends Service {
   @service('bookmarks')
   bookmarks: Bookmarks;
 
@@ -109,6 +111,6 @@ export default class PageTitle extends Service {
 
 declare module '@ember/service' {
   interface Registry {
-    'page-title': PageTitle;
+    'page-retitler': PageRetitler;
   }
 }
