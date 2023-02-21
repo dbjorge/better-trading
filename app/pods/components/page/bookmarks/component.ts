@@ -141,21 +141,23 @@ export default class PageBookmarks extends Component {
     }
   });
 
-  persistImportedFolderTask = dropTask(async ({folder, trades}: {folder: BookmarksFolderStruct; trades: BookmarksTradeStruct[]}) => {
-    try {
-      const folderId = await this.bookmarks.persistFolder(folder);
-      await this.bookmarks.persistTrades(trades, folderId);
+  persistImportedFolderTask = dropTask(
+    async ({folder, trades}: {folder: BookmarksFolderStruct; trades: BookmarksTradeStruct[]}) => {
+      try {
+        const folderId = await this.bookmarks.persistFolder(folder);
+        await this.bookmarks.persistTrades(trades, folderId);
 
-      this.toggleFolderExpansion(folderId);
-      this.folders = await this.bookmarks.fetchFolders();
+        this.toggleFolderExpansion(folderId);
+        this.folders = await this.bookmarks.fetchFolders();
 
-      this.flashMessages.success(this.intl.t('page.bookmarks.import-folder-success-flash', {title: folder.title}));
-    } catch (_error) {
-      this.flashMessages.alert(this.intl.t('general.generic-alert-flash'));
-    } finally {
-      this.isImportingFolder = false;
+        this.flashMessages.success(this.intl.t('page.bookmarks.import-folder-success-flash', {title: folder.title}));
+      } catch (_error) {
+        this.flashMessages.alert(this.intl.t('general.generic-alert-flash'));
+      } finally {
+        this.isImportingFolder = false;
+      }
     }
-  });
+  );
 
   @action
   toggleArchiveDisplay() {

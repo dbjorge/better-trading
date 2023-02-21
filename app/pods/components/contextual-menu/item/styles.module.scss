@@ -1,5 +1,6 @@
 .item {
   @include gradient-hover($gray-alt);
+
   display: block;
   width: 100%;
   padding: 4px 8px;

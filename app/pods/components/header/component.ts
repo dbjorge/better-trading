@@ -27,7 +27,7 @@ export default class Header extends Component {
 
   constructor(owner: unknown, args: {}) {
     super(owner, args);
-    this.expandButtonIsVisible = Boolean(this.storage.getLocalValue(COLLAPSED_STORAGE_KEY))
+    this.expandButtonIsVisible = Boolean(this.storage.getLocalValue(COLLAPSED_STORAGE_KEY));
   }
 
   @action

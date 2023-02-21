@@ -18,7 +18,7 @@ const assetsPathFor = (assetsRelativePath) => {
   return `ember-build/${path}`;
 };
 
-const sourceMapPaths = (target === 'production') ? [] : [assetsPathFor('*.map')];
+const sourceMapPaths = target === 'production' ? [] : [assetsPathFor('*.map')];
 
 const manifest = Object.assign(
   {

@@ -1,5 +1,6 @@
 .entry-link {
   @include gradient-hover($gold-alt);
+
   display: block;
   padding: 3px 5px;
   color: $white;

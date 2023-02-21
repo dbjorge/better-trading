@@ -20,7 +20,7 @@ export default class Backup extends Component {
   @service('intl')
   intl: IntlService;
 
-  generateBackupTask = dropTask(async() => {
+  generateBackupTask = dropTask(async () => {
     const dataString = await this.bookmarks.generateBackupDataString();
 
     const linkFakeElement = document.createElement('a');

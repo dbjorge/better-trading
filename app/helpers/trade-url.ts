@@ -10,23 +10,20 @@ import type {TradeSiteVersion} from 'better-trading/types/trade-location';
 
 type HelperProps = {
   Args: {
-    Positional: [{version: TradeSiteVersion; slug: string; type: string}],
+    Positional: [{version: TradeSiteVersion; slug: string; type: string}];
     Named: {
       suffix?: string;
       league: string; // in non-PC realms, should be of form "realm/LeagueName", eg "xbox/Legion"
-    }
+    };
   };
   Return: string;
-}
+};
 
 export default class TradeUrl extends Helper<HelperProps> {
   @service('trade-location')
   tradeLocation: TradeLocation;
 
-  compute(
-    [{version, type, slug}]: HelperProps['Args']['Positional'],
-    {suffix, league}: HelperProps['Args']['Named']
-  ): string {
+  compute([{version, type, slug}]: HelperProps['Args']['Positional'], {suffix, league}: HelperProps['Args']['Named']): string {
     const tradeUrl = this.tradeLocation.getTradeUrl(version, type, slug, league);
 
     if (!suffix) return tradeUrl;

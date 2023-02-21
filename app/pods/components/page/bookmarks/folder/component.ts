@@ -77,7 +77,7 @@ export default class BookmarksFolder extends Component<Args> {
     this.currentLeague = this.tradeLocation.league;
   }
 
-  initialLoadTradesTask = dropTask(async() => {
+  initialLoadTradesTask = dropTask(async () => {
     this.trades = await this.bookmarks.fetchTradesByFolderId(this.args.folder.id);
   });
 

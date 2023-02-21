@@ -1,7 +1,7 @@
 /* global require */
 
 import ApplicationInstance from '@ember/application/instance';
-import { ItemResultsEnhancerService } from 'better-trading/types/item-results';
+import {ItemResultsEnhancerService} from 'better-trading/types/item-results';
 
 export const initialize = (appInstance: ApplicationInstance): void => {
   const itemResultsEnhanceService = appInstance.lookup('service:item-results/enhance');
@@ -14,7 +14,9 @@ export const initialize = (appInstance: ApplicationInstance): void => {
     .filter((moduleName) => moduleName.startsWith('better-trading/services/item-results/enhancers/'))
     .map((moduleName) => moduleName.replace('better-trading/services/', ''))
     .forEach((moduleName) => {
-      itemResultsEnhanceService.registerEnhancerService(appInstance.lookup(`service:${moduleName}`) as unknown as ItemResultsEnhancerService);
+      itemResultsEnhanceService.registerEnhancerService(
+        appInstance.lookup(`service:${moduleName}`) as unknown as ItemResultsEnhancerService
+      );
     });
 };
 

@@ -59,8 +59,8 @@ module.exports = function (defaults) {
         },
         optimization: {
           splitChunks: false,
-        }
-      }
+        },
+      },
     },
 
     sourcemaps: {
