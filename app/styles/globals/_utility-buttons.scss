@@ -1,7 +1,7 @@
 .results {
   button.refresh,
   button.copy,
-  button.searchBy {
+  button.searchBy { /* stylelint-disable-line selector-class-pattern */
     display: block !important;
     opacity: 0.6;
     transition: opacity 0.2s ease;

@@ -25,7 +25,7 @@
 
     &:hover,
     &:focus {
-      background-color: lighten($blue, 5%);
+      background-color: color.adjust($blue, $lightness: 5%);
     }
   }
 
@@ -35,7 +35,7 @@
 
     &:hover,
     &:focus {
-      background-color: lighten($gold, 5%);
+      background-color: color.adjust($gold, $lightness: 5%);
     }
   }
 
@@ -45,7 +45,7 @@
 
     &:hover,
     &:focus {
-      background-color: lighten($red, 5%);
+      background-color: color.adjust($red, $lightness: 5%);
     }
   }
 

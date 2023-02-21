@@ -9,6 +9,12 @@
   display: flex;
   align-items: center;
 
+  .logo {
+    transform: rotate(0);
+    height: 30px;
+    transition: transform 0.2s ease;
+  }
+
   &:hover,
   &:focus {
     text-decoration: none;
@@ -17,12 +23,6 @@
       transform: rotate(5deg);
     }
   }
-}
-
-.logo {
-  transform: rotate(0);
-  height: 30px;
-  transition: transform 0.2s ease;
 }
 
 .title {
@@ -53,6 +53,11 @@
   }
 }
 
+.expand-button-icon {
+  margin-right: 10px;
+  transition: margin-right 0.2s ease;
+}
+
 .expand-button {
   display: flex;
   position: fixed;
@@ -72,7 +77,7 @@
 
   &:hover,
   &:focus {
-    background-color: lighten($blue, 5%);
+    background-color: color.adjust($blue, $lightness: 5%);
 
     .expand-button-icon {
       margin-right: 15px;
@@ -83,9 +88,4 @@
     opacity: 1;
     pointer-events: all;
   }
-}
-
-.expand-button-icon {
-  margin-right: 10px;
-  transition: margin-right 0.2s ease;
 }

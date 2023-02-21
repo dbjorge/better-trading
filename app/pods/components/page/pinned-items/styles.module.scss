@@ -3,6 +3,7 @@
   grid-gap: 10px;
 }
 
+/* stylelint-disable selector-class-pattern */
 .item-wrapper {
   background-color: #000;
 
@@ -85,3 +86,5 @@
     }
   }
 }
+
+/* stylelint-enable selector-class-pattern */

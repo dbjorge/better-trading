@@ -11,6 +11,10 @@
   position: static;
 }
 
+.ember-modal-wrapper.emd-animatable .ember-modal-dialog {
+  position: relative;
+}
+
 .ember-modal-wrapper.emd-static.emd-wrapper-target-attachment-center .ember-modal-dialog {
   top: 20%;
   left: 50%;
@@ -29,16 +33,6 @@
   height: 100vh;
 }
 
-.ember-modal-wrapper.emd-animatable.emd-wrapper-target-attachment-center .ember-modal-overlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ember-modal-wrapper.emd-animatable .ember-modal-dialog {
-  position: relative;
-}
-
 .ember-modal-overlay {
   position: fixed;
   z-index: 50;
@@ -46,4 +40,10 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+}
+
+.ember-modal-wrapper.emd-animatable.emd-wrapper-target-attachment-center .ember-modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
