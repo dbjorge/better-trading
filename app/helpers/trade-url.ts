@@ -8,7 +8,7 @@ import TradeLocation from 'better-trading/services/trade-location';
 // Types
 import type {TradeSiteVersion} from 'better-trading/types/trade-location';
 
-type HelperProps = {
+interface HelperProps {
   Args: {
     Positional: [{version: TradeSiteVersion; slug: string; type: string}];
     Named: {
@@ -17,7 +17,7 @@ type HelperProps = {
     };
   };
   Return: string;
-};
+}
 
 export default class TradeUrl extends Helper<HelperProps> {
   @service('trade-location')

@@ -13,6 +13,6 @@ declare module 'ember-intl/services/intl' {
 
 declare module '@ember/service' {
   interface Registry {
-    'intl': IntlService;
+    intl: IntlService;
   }
 }
