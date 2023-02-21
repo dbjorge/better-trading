@@ -18,6 +18,8 @@ const assetsPathFor = (assetsRelativePath) => {
   return `ember-build/${path}`;
 };
 
+const sourceMapPaths = (target === 'production') ? [] : [assetsPathFor('*.map')];
+
 const manifest = Object.assign(
   {
     version: packageJson.version,
@@ -25,7 +27,7 @@ const manifest = Object.assign(
     content_scripts: [
       {
         matches: ['*://www.pathofexile.com/trade*'],
-        js: [assetsPathFor('vendor.js'), assetsPathFor('better-trading.js')],
+        js: [assetsPathFor('vendor.js'), assetsPathFor('ember-auto-import.app.js'), assetsPathFor('better-trading.js')],
         css: [assetsPathFor('vendor.css'), assetsPathFor('better-trading.css')],
       },
     ],
@@ -36,7 +38,7 @@ const manifest = Object.assign(
     host_permissions: ['*://poe.ninja/*'],
     web_accessible_resources: [
       {
-        resources: [assetsPathFor('images/*')],
+        resources: [assetsPathFor('images/*'), ...sourceMapPaths],
         matches: ['*://www.pathofexile.com/*'],
       },
     ],

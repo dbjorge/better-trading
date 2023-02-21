@@ -41,12 +41,27 @@ module.exports = function (defaults) {
       includePolyfill: true,
     },
 
-    // Chromium forbids the use of eval in browser extensions as of Manifest v3.
-    // This setting causes ember-auto-import to avoid webpack source map settings
-    // which would implicitly use eval in built versions of the app.
     autoImport: {
+      // Chromium forbids the use of eval in browser extensions as of Manifest v3.
+      // This setting causes ember-auto-import to avoid webpack source map settings
+      // which would implicitly use eval in built versions of the app.
       forbidEval: true,
-      insertScriptsAt: null,
+
+      
+      // This is required to ensure that ember-auto-import produces a single chunk
+      // with a consistent name, so we can specify that file in the contentScript
+      // section of manfiest.json. In practice, "[id]" is either "app" or "test".
+      //
+      // See also https://github.com/ef4/ember-auto-import/issues/560
+      webpack: {
+        output: {
+          filename: 'ember-auto-import.[id].js',
+          chunkFilename: 'ember-auto-import.[id].js',
+        },
+        optimization: {
+          splitChunks: false,
+        }
+      }
     },
 
     sourcemaps: {
